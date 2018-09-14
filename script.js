@@ -2,6 +2,12 @@ const fruit = ['apple', 'orange', 'jackfruit']
 
 const numbers = [3, 10, 18, 20]
 
+const main = document.getElementById("main")
+
+
+
+
+
 //kata 1
 
 //execute function once for each array element
@@ -12,6 +18,8 @@ function forEachKata(array, callback) {
 
     for (let i = 0; i < fruit.length; i++) {
         const value = fruit[i]
+        let answer1 = document.createTextNode(' ' + value + ' ')
+        main.appendChild(answer1)
         console.log(value)
     }
 }
@@ -31,6 +39,9 @@ function mapKata(array, callback) {
         fruitNames.push(fruit[i])
     }
 
+    let answer2 = document.createTextNode(fruitNames)
+    main.appendChild(document.createElement("br"))
+    main.appendChild(answer2)
     console.log(fruitNames)
 
 
@@ -52,6 +63,10 @@ function someKata(number, callback) {
     for (let i = 0; i < numbers.length; i++) {
 
         if (numbers[i] < 10) {
+            let answer3 = document.createTextNode("True")
+            answer3.className = "newDiv"
+            main.appendChild(document.createElement("br"))
+            main.appendChild(answer3)
             console.log("true")
         } else {
 
@@ -83,6 +98,11 @@ function findKata(array, callback) {
     }
 }
 
+let answer4 = document.createTextNode(findKata())
+main.appendChild(document.createElement("br"))
+main.appendChild(answer4)
+
+
 console.log(findKata())
 
 
@@ -106,6 +126,9 @@ function findIndexKata(num, callback) {
     }
 }
 
+let answer5 = document.createTextNode(findIndexKata())
+main.appendChild(document.createElement("br"))
+main.appendChild(answer5)
 
 console.log(findIndexKata())
 
@@ -118,6 +141,7 @@ function everyKata(num, callback) {
 
     for (i = 0; i < numbers.length; i++) {
         if (numbers[i] > 2) {
+
             console.log("true")
 
         } else {
@@ -125,7 +149,9 @@ function everyKata(num, callback) {
         }
     }
 }
-
+let answer6 = document.createTextNode("True")
+main.appendChild(document.createElement("br"))
+main.appendChild(answer6)
 console.log(everyKata())
 
 
@@ -146,11 +172,14 @@ function filterKata() {
             break;
         }
 
-        console.log(newFruit)
+
 
     }
-
+    console.log(newFruit)
 
 }
 
+let answer7 = document.createTextNode(fruit)
+main.appendChild(document.createElement("br"))
+main.appendChild(answer7)
 console.log(filterKata())
