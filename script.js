@@ -39,7 +39,7 @@ function mapKata(array, callback) {
         fruitNames.push(fruit[i])
     }
 
-    let answer2 = document.createTextNode(fruitNames)
+    let answer2 = document.createTextNode(fruitNames.join(' '))
     main.appendChild(document.createElement("br"))
     main.appendChild(answer2)
     console.log(fruitNames)
@@ -179,7 +179,7 @@ function filterKata() {
 
 }
 
-let answer7 = document.createTextNode(fruit)
+let answer7 = document.createTextNode(fruit.join(' '))
 main.appendChild(document.createElement("br"))
 main.appendChild(answer7)
 console.log(filterKata())
