@@ -1,13 +1,3 @@
-const fruit = ['apple', 'orange', 'jackfruit']
-
-const numbers = [3, 10, 18, 20]
-
-const main = document.getElementById("main")
-
-
-
-
-
 //kata 1
 
 //execute function once for each array element
@@ -16,170 +6,166 @@ function forEachKata(array, callback) {
 
 
 
-    for (let i = 0; i < fruit.length; i++) {
-        const value = fruit[i]
-        let answer1 = document.createTextNode(' ' + value + ' ')
-        main.appendChild(answer1)
-        console.log(value)
+    for (let i = 0; i < array.length; i++) {
+        const value = array[i]
+        console.log(callback(value, i, array))
     }
 }
 
-console.log(forEachKata())
+const numbers = [3, 10, 18, 20]
+
+forEachKata(numbers, function(number, i, array) {
+
+    const numberValue =
+        number === 3 || number === 10 || number === 18 || number === 20
+    console.log(`The number '${number}' is at position '${i}' of '${array}'`)
+})
 
 
 //kata 2
 
 //create new array with the results of called function
 
-function mapKata(array, callback) {
 
-    let fruitNames = [];
+function mapKata(array, callbackMap) {
 
-    for (let i = 0; i < fruit.length; i++) {
-        fruitNames.push(fruit[i])
+    let newArray = [];
+
+    for (let i = 0; i < array.length; i++) {
+        const value = array[i]
+        newArray.push(callbackMap(value, i, newArray))
     }
 
-    let answer2 = document.createTextNode(fruitNames.join(' '))
-    main.appendChild(document.createElement("br"))
-    main.appendChild(answer2)
-    console.log(fruitNames)
-
+    return newArray
 
 }
 
-console.log(mapKata())
+let doubleNumbers = mapKata(numbers, function(number, i, array) {
+    return (number * 2)
+})
+
+console.log(doubleNumbers)
 
 
 
 
-//kata 3
+// //kata 3
 
-//searching the array for numbers less than 10
-
-
-
-function someKata(number, callback) {
-
-    for (let i = 0; i < numbers.length; i++) {
-
-        if (numbers[i] < 10) {
-            let answer3 = document.createTextNode("True")
-            answer3.className = "newDiv"
-            main.appendChild(document.createElement("br"))
-            main.appendChild(answer3)
-            console.log("true")
-        } else {
-
-            break;
-        }
-    }
-}
-
-console.log(someKata())
+// //searching the array for numbers less than 10
 
 
 
-//kata4
+function someKata(array, callbackSome) {
 
-//return first number that meets condition of statement
+    for (let i = 0; i < array.length; i++) {
 
-function findKata(array, callback) {
-
-    let findNumber = []
-
-    for (let i = 0; i < numbers.length; i++) {
-        if (numbers[i] > 10) {
-
-            findNumber.push(numbers[i])
-            return findNumber
-
-
-        }
-    }
-}
-
-let answer4 = document.createTextNode(findKata())
-main.appendChild(document.createElement("br"))
-main.appendChild(answer4)
-
-
-console.log(findKata())
-
-
-
-//kata5
-
-// return the index of the first element that is greater than 10
-
-function findIndexKata(num, callback) {
-
-    let findIndex = []
-
-    for (let i = 0; i < numbers.length; i++) {
-
-
-        findIndex.push(numbers[i])
-        return findIndex.indexOf(numbers[i])
-
-
+        const value = array[i]
+        callbackSome(value, i, array)
 
     }
 }
 
-let answer5 = document.createTextNode(findIndexKata())
-main.appendChild(document.createElement("br"))
-main.appendChild(answer5)
-
-console.log(findIndexKata())
-
-
-//kata6
-
-// return true if every item in array meets condition
-
-function everyKata(num, callback) {
-
-    for (i = 0; i < numbers.length; i++) {
-        if (numbers[i] > 2) {
-
-            console.log("true")
-
-        } else {
-            break;
-        }
-    }
-}
-let answer6 = document.createTextNode("True")
-main.appendChild(document.createElement("br"))
-main.appendChild(answer6)
-console.log(everyKata())
+someKata(numbers, function(number, i, array) {
+    const numbers = [3, 10, 18, 20]
+    const numberThree = 3
+    const oddNumber = numberThree ? true : false
+    console.log(oddNumber)
 
 
-//kata7
 
-// create a new array with all elements that pass the test given by the function
-
-function filterKata() {
-
-    let newFruit = []
-
-    for (i = 0; i < fruit.length; i++) {
-
-        if (fruit[i] < 6) {
-
-            newFruit.push(fruit[i])
-        } else {
-            break;
-        }
+})
 
 
+
+
+
+// //kata4
+
+// //return first number that meets condition of statement
+
+function findKata(array, callbackFind) {
+
+    for (let i = 0; i < array.length; i++) {
+        const value = array[i]
+        let find = callbackFind(value, i, array)
+        if (find === true) return value
 
     }
-    console.log(newFruit)
 
+    return undefined
 }
 
-let answer7 = document.createTextNode(fruit.join(' '))
-main.appendChild(document.createElement("br"))
-main.appendChild(answer7)
-console.log(filterKata())
+let findValue = findKata(numbers, function(number, i, array) {
+    return number >= 11
+})
+
+console.log(findValue)
+
+
+
+
+// //kata5
+
+// // return the index of the first element that is greater than 10
+
+function findIndexKata(array, callbackFindIndex) {
+
+    for (let i = 0; i < array.length; i++) {
+        const value = array[i]
+        callbackFindIndex(value, i, array)
+    }
+}
+
+findIndexKata(numbers, function(number, i, array) {
+    const greaterThanTen = []
+    if (number > 10) {
+        console.log(`The number ${number} is at position ${i}`)
+    }
+})
+
+
+// //kata6
+
+// // return true if every item in array meets condition
+
+function everyKata(array, callbackFindEvery) {
+
+    for (i = 0; i < array.length; i++) {
+        const value = array[i]
+        callbackFindEvery(value, i, array)
+
+    }
+}
+everyKata(numbers, function(number, index, array) {
+    const numbersGreaterThan10 = (numbers < 10) ? true : false;
+    console.log(numbersGreaterThan10)
+})
+
+
+// //kata7
+
+// // create a new array with all elements that pass the test given by the function
+// if number is greater than 10
+
+function filterKata(array, callbackFilter) {
+
+    let matchingNumbers = []
+
+    for (i = 0; i < array.length; i++) {
+        const value = array[i]
+        let match = matchingNumbers.push(callbackFilter(value, i, matchingNumbers))
+    }
+
+    return matchingNumbers
+}
+
+let newNumber = filterKata(numbers, function(number, i, array) {
+
+    if (number > 10) {
+
+        return number
+    } else { return "" }
+
+})
+
+console.log(newNumber)
